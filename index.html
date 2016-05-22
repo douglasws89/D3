@@ -226,6 +226,10 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src='chosen_v1.5.1/chosen.jquery.min.js'></script>
 <script>
+
+  $('#myModal').on('hidden.bs.modal', function () {
+    $('#bar').html("");
+  })
   // Initiaze chosen library
   $('.chosen-select').chosen();
   function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
