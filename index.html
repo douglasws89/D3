@@ -231,10 +231,11 @@
 <script src='chosen_v1.5.1/chosen.jquery.min.js'></script>
 <script>
 
+  /*Clear the modal #bar graph html on close so that next one starts with a clean state*/
   $('#myModal').on('hidden.bs.modal', function () {
     $('#bar').html("");
   })
-  // Initiaze chosen library
+  // Initiaze chosen library for better option selection
   $('.chosen-select').chosen();
   function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
     return "<h4>"+n+"</h4><table>"+
@@ -244,6 +245,7 @@
       "</table>";
   }
 
+  /*Function to compare two states, change modal title, show bar graph on modal, show bootstrap modal*/
   function compareStates(data,state1, state2) {
     showBar(data);
     var title = state1 + " VS. " + state2;
@@ -251,6 +253,7 @@
     $('#myModal').modal('show');
   };
 
+  /*In case we need to redraw the data*/
   function draw(data) {
     uStates.draw("#statesvg", data, tooltipHtml);
   }
@@ -268,11 +271,14 @@
 
     function compare() {
       var arr = [];
-      var state1 = $('#state1').val();
+      var state1 = $('#state1').val(); //get value from input
       var state2 = $('#state2').val();
-
+      
+      //Get all state abbreviation 
       var keys = Object.keys(data);
       var length = keys.length;
+
+      // Compose data to the compare function
       for (var i = 0; i < length; i++) {
         if (keys[i] == state1){
           arr.push({"State": d3.select('#' + state1).attr("name"),
@@ -289,8 +295,10 @@
           });
         }
       }
+      // Call compare states
       compareStates(arr,d3.select('#' + state1).attr("name"), d3.select('#' + state2).attr("name"));
     }
+    // Add listener to compare button, to compare states
     $('#compare').click(function(){
       compare();
     });
