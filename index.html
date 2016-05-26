@@ -22,8 +22,6 @@
   display: none;
 }
 
-
-
   .state{
     fill: none;
     stroke: #a9a9a9;
@@ -208,6 +206,12 @@
   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <hr>
+  <footer class="footer">
+    <div class="container">
+      <p class="text-center">&copy; 2016 <i class="fa fa-heart"></i>Ibrahim Altaweel, Brad Cardello , Breket Haile, and Douglas Silva | CMPS165</p>
+    </div>
+  </footer>
   <div id='myModal' class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -263,7 +267,9 @@
     var keys = Object.keys(data);
     /* Interpolate color according to the numbers of tracking crime reported*/
     keys.forEach(function(d){
-      data[d].color = d3.interpolate("#81CFE0", "#446CB3")(data[d].traffickingCrimesReported/100);
+      data[d].color = d3.interpolate("#00FFFF", "#380474")(data[d].traffickingCrimesReported/1000);
+      console.log(d + " | " + data[d].traffickingCrimesReported + ": " + data[d].color);
+
     });
 
     /* draw states on id #statesvg */
