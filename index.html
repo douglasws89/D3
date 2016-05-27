@@ -123,6 +123,14 @@ h3 {
 
   #selection {
     padding: 10px;
+  } 
+
+  #gender_chosen, #age_chosen{
+    width: 150px !important;
+  }
+    
+  #chooseGender, #chooseAge, #compare{
+    width: 110px !important;
   }
 
 .modal-dialog {
@@ -139,6 +147,22 @@ h3 {
   <p>Despite popular belief, human trafficking is rampant in the US and the scale is shocking. Most sex trade and child labor happens in SouthEastern Unites States (I am not sure if this is true, could be in more populous states like CA and TX). One sentence about sex trade, another about child labor. etc.” is a great star</p>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   <div id="selection">
+      
+    <h4>Select gender: </h4>
+    <select id='gender' name="gender" class='chosen-select'>
+     <option value="Female">Female</option>
+     <option value="Male">Male</option>
+     <option value="Other">Other</option>
+    </select>
+    <button id="chooseGender" class="btn btn-info btn-sm">view by gender!</button>
+      
+    <h4>Select age: </h4>
+    <select id='age' name="age" class='chosen-select'>
+     <option value="Adult">Adult</option>
+     <option value="Minor">Minor</option>
+    </select>
+    <button id="chooseAge" class="btn btn-info btn-sm">view by age!</button>  
+    
     <h4>Select two states to compare their data: </h4>
     <select id='state1' name="state1" class='chosen-select'>
      <option value="AL">Alabama</option>
@@ -444,7 +468,7 @@ function showBar(data) {
 
   x0.domain(data.map(function(d) { return d.State; }));
   x1.domain(keys).rangeRoundBands([0, x0.rangeBand()]);
-  y.domain([0, d3.max(data, function(d) { return d3.max(d.data, function(d) { return d.value; }); })]);
+  y.domain([0, d3.max(data, function(d) { return d3.max(d.data, function(d) { return d.value; }) + d3.max(d.data, function(d) { return d.value; })/4; })]);
 
   svg.append("g")
       .attr("class", "x axis")
